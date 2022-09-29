@@ -34,12 +34,6 @@ class CameraController: UIViewController {
     
     //MARK: - Views
     
-    private let previewView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
-    }()
-    
     private lazy var flashButton: UIButton = {
         let button = UIButton()
         button.tintColor = .white
@@ -74,18 +68,11 @@ class CameraController: UIViewController {
     //MARK: - Settings
     
     private func setupHierarchy() {
-        view.addSubview(previewView)
         view.addSubview(flashButton)
         view.addSubview(qrFrameImage)
     }
     
     private func setupLayout() {
-        previewView.translatesAutoresizingMaskIntoConstraints = false
-        previewView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        previewView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        previewView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        previewView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-                
         flashButton.translatesAutoresizingMaskIntoConstraints = false
         flashButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         flashButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
