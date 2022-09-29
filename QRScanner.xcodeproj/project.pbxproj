@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0456471228E5E9D1002459A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456471128E5E9D1002459A5 /* AppDelegate.swift */; };
-		0456471428E5E9D1002459A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456471328E5E9D1002459A5 /* SceneDelegate.swift */; };
-		0456471628E5E9D1002459A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456471528E5E9D1002459A5 /* ViewController.swift */; };
-		0456471928E5E9D1002459A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0456471728E5E9D1002459A5 /* Main.storyboard */; };
+		0456471628E5E9D1002459A5 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456471528E5E9D1002459A5 /* CameraController.swift */; };
 		0456471B28E5E9D4002459A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0456471A28E5E9D4002459A5 /* Assets.xcassets */; };
 		0456471E28E5E9D4002459A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0456471C28E5E9D4002459A5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -18,9 +16,7 @@
 /* Begin PBXFileReference section */
 		0456470E28E5E9D1002459A5 /* QRScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0456471128E5E9D1002459A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0456471328E5E9D1002459A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0456471528E5E9D1002459A5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0456471828E5E9D1002459A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0456471528E5E9D1002459A5 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		0456471A28E5E9D4002459A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0456471D28E5E9D4002459A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0456471F28E5E9D4002459A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,6 +33,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040CBB5828E5FA4D003E4458 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				040CBB5928E5FA53003E4458 /* App */,
+				040CBB5A28E5FA9B003E4458 /* CameraModule */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		040CBB5928E5FA53003E4458 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0456471128E5E9D1002459A5 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		040CBB5A28E5FA9B003E4458 /* CameraModule */ = {
+			isa = PBXGroup;
+			children = (
+				0456471528E5E9D1002459A5 /* CameraController.swift */,
+			);
+			path = CameraModule;
+			sourceTree = "<group>";
+		};
+		040CBB5B28E5FAA7003E4458 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0456471A28E5E9D4002459A5 /* Assets.xcassets */,
+				0456471C28E5E9D4002459A5 /* LaunchScreen.storyboard */,
+				0456471F28E5E9D4002459A5 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		0456470528E5E9D1002459A5 = {
 			isa = PBXGroup;
 			children = (
@@ -56,13 +87,8 @@
 		0456471028E5E9D1002459A5 /* QRScanner */ = {
 			isa = PBXGroup;
 			children = (
-				0456471128E5E9D1002459A5 /* AppDelegate.swift */,
-				0456471328E5E9D1002459A5 /* SceneDelegate.swift */,
-				0456471528E5E9D1002459A5 /* ViewController.swift */,
-				0456471728E5E9D1002459A5 /* Main.storyboard */,
-				0456471A28E5E9D4002459A5 /* Assets.xcassets */,
-				0456471C28E5E9D4002459A5 /* LaunchScreen.storyboard */,
-				0456471F28E5E9D4002459A5 /* Info.plist */,
+				040CBB5828E5FA4D003E4458 /* Sources */,
+				040CBB5B28E5FAA7003E4458 /* Resources */,
 			);
 			path = QRScanner;
 			sourceTree = "<group>";
@@ -127,7 +153,6 @@
 			files = (
 				0456471E28E5E9D4002459A5 /* LaunchScreen.storyboard in Resources */,
 				0456471B28E5E9D4002459A5 /* Assets.xcassets in Resources */,
-				0456471928E5E9D1002459A5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +163,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0456471628E5E9D1002459A5 /* ViewController.swift in Sources */,
+				0456471628E5E9D1002459A5 /* CameraController.swift in Sources */,
 				0456471228E5E9D1002459A5 /* AppDelegate.swift in Sources */,
-				0456471428E5E9D1002459A5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0456471728E5E9D1002459A5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0456471828E5E9D1002459A5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0456471C28E5E9D4002459A5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -289,12 +305,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34TG2Y4HBL;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = QRScanner/Info.plist;
+				INFOPLIST_FILE = QRScanner/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -317,12 +333,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 34TG2Y4HBL;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = QRScanner/Info.plist;
+				INFOPLIST_FILE = QRScanner/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
