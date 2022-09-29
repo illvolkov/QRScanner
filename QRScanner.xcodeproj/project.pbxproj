@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040CBB6028E60051003E4458 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CBB5F28E60050003E4458 /* ModuleBuilder.swift */; };
+		040CBB6228E600BF003E4458 /* CameraPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CBB6128E600BF003E4458 /* CameraPresenter.swift */; };
+		040CBB6428E6011A003E4458 /* CameraPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CBB6328E6011A003E4458 /* CameraPresenterDelegate.swift */; };
+		040CBB6728E6236F003E4458 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CBB6628E6236F003E4458 /* CameraManager.swift */; };
+		040CBB6928E62CCB003E4458 /* CameraManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CBB6828E62CCB003E4458 /* CameraManagerProtocol.swift */; };
 		0456471228E5E9D1002459A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456471128E5E9D1002459A5 /* AppDelegate.swift */; };
 		0456471628E5E9D1002459A5 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456471528E5E9D1002459A5 /* CameraController.swift */; };
 		0456471B28E5E9D4002459A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0456471A28E5E9D4002459A5 /* Assets.xcassets */; };
@@ -14,6 +19,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040CBB5F28E60050003E4458 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		040CBB6128E600BF003E4458 /* CameraPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPresenter.swift; sourceTree = "<group>"; };
+		040CBB6328E6011A003E4458 /* CameraPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPresenterDelegate.swift; sourceTree = "<group>"; };
+		040CBB6628E6236F003E4458 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		040CBB6828E62CCB003E4458 /* CameraManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManagerProtocol.swift; sourceTree = "<group>"; };
 		0456470E28E5E9D1002459A5 /* QRScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0456471128E5E9D1002459A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0456471528E5E9D1002459A5 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
@@ -37,6 +47,8 @@
 			isa = PBXGroup;
 			children = (
 				040CBB5928E5FA53003E4458 /* App */,
+				040CBB5E28E6003E003E4458 /* ModuleBuilder */,
+				040CBB6528E62363003E4458 /* Managers */,
 				040CBB5A28E5FA9B003E4458 /* CameraModule */,
 			);
 			path = Sources;
@@ -53,7 +65,8 @@
 		040CBB5A28E5FA9B003E4458 /* CameraModule */ = {
 			isa = PBXGroup;
 			children = (
-				0456471528E5E9D1002459A5 /* CameraController.swift */,
+				040CBB5D28E5FFE6003E4458 /* Presenter */,
+				040CBB5C28E5FFDE003E4458 /* View */,
 			);
 			path = CameraModule;
 			sourceTree = "<group>";
@@ -66,6 +79,40 @@
 				0456471F28E5E9D4002459A5 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		040CBB5C28E5FFDE003E4458 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0456471528E5E9D1002459A5 /* CameraController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		040CBB5D28E5FFE6003E4458 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				040CBB6328E6011A003E4458 /* CameraPresenterDelegate.swift */,
+				040CBB6128E600BF003E4458 /* CameraPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		040CBB5E28E6003E003E4458 /* ModuleBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				040CBB5F28E60050003E4458 /* ModuleBuilder.swift */,
+			);
+			path = ModuleBuilder;
+			sourceTree = "<group>";
+		};
+		040CBB6528E62363003E4458 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				040CBB6828E62CCB003E4458 /* CameraManagerProtocol.swift */,
+				040CBB6628E6236F003E4458 /* CameraManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		0456470528E5E9D1002459A5 = {
@@ -164,7 +211,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0456471628E5E9D1002459A5 /* CameraController.swift in Sources */,
+				040CBB6228E600BF003E4458 /* CameraPresenter.swift in Sources */,
 				0456471228E5E9D1002459A5 /* AppDelegate.swift in Sources */,
+				040CBB6428E6011A003E4458 /* CameraPresenterDelegate.swift in Sources */,
+				040CBB6728E6236F003E4458 /* CameraManager.swift in Sources */,
+				040CBB6028E60051003E4458 /* ModuleBuilder.swift in Sources */,
+				040CBB6928E62CCB003E4458 /* CameraManagerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +358,7 @@
 				DEVELOPMENT_TEAM = 34TG2Y4HBL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QRScanner/Resources/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to access the camera for scanning QR code.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
@@ -334,6 +387,7 @@
 				DEVELOPMENT_TEAM = 34TG2Y4HBL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QRScanner/Resources/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to access the camera for scanning QR code.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
