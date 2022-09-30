@@ -108,7 +108,13 @@ class CameraController: UIViewController {
 
 //MARK: - CameraPresenterDelegate methods
 
-extension CameraController: CameraPresenterDelegate {}
+extension CameraController: CameraPresenterDelegate {
+    func presenting(webController: UIViewController) {
+        webController.modalPresentationStyle = .fullScreen
+        present(webController, animated: true)
+        setDefaultQRFrameImageColor()
+    }
+}
 
 //MARK: - AVCaptureMetadataOutputObjectsDelegate methods
 
@@ -118,6 +124,9 @@ extension CameraController: AVCaptureMetadataOutputObjectsDelegate {
         
         if let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject, object.type == .qr {
             setSuccessfulQRFrameImageColor()
+            if let presenter {
+                presenter.showWebController(with: object.stringValue ?? "")
+            }
         }
     }
 }
