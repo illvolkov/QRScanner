@@ -12,6 +12,9 @@
 		040CBB6428E6011A003E4458 /* CameraPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CBB6328E6011A003E4458 /* CameraPresenterDelegate.swift */; };
 		040CBB6728E6236F003E4458 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CBB6628E6236F003E4458 /* CameraManager.swift */; };
 		040CBB6928E62CCB003E4458 /* CameraManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CBB6828E62CCB003E4458 /* CameraManagerProtocol.swift */; };
+		040CBB6E28E65BCC003E4458 /* WebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CBB6D28E65BCC003E4458 /* WebController.swift */; };
+		040CBB7028E65BD6003E4458 /* WebPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CBB6F28E65BD6003E4458 /* WebPresenter.swift */; };
+		040CBB7228E65BE4003E4458 /* WebPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040CBB7128E65BE4003E4458 /* WebPresenterDelegate.swift */; };
 		0456471228E5E9D1002459A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456471128E5E9D1002459A5 /* AppDelegate.swift */; };
 		0456471628E5E9D1002459A5 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456471528E5E9D1002459A5 /* CameraController.swift */; };
 		0456471B28E5E9D4002459A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0456471A28E5E9D4002459A5 /* Assets.xcassets */; };
@@ -24,6 +27,9 @@
 		040CBB6328E6011A003E4458 /* CameraPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPresenterDelegate.swift; sourceTree = "<group>"; };
 		040CBB6628E6236F003E4458 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		040CBB6828E62CCB003E4458 /* CameraManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManagerProtocol.swift; sourceTree = "<group>"; };
+		040CBB6D28E65BCC003E4458 /* WebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebController.swift; sourceTree = "<group>"; };
+		040CBB6F28E65BD6003E4458 /* WebPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPresenter.swift; sourceTree = "<group>"; };
+		040CBB7128E65BE4003E4458 /* WebPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPresenterDelegate.swift; sourceTree = "<group>"; };
 		0456470E28E5E9D1002459A5 /* QRScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0456471128E5E9D1002459A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0456471528E5E9D1002459A5 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
@@ -49,6 +55,7 @@
 				040CBB5928E5FA53003E4458 /* App */,
 				040CBB5E28E6003E003E4458 /* ModuleBuilder */,
 				040CBB6528E62363003E4458 /* Managers */,
+				040CBB6A28E65BA4003E4458 /* WebModule */,
 				040CBB5A28E5FA9B003E4458 /* CameraModule */,
 			);
 			path = Sources;
@@ -113,6 +120,32 @@
 				040CBB6628E6236F003E4458 /* CameraManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		040CBB6A28E65BA4003E4458 /* WebModule */ = {
+			isa = PBXGroup;
+			children = (
+				040CBB6C28E65BB8003E4458 /* Presenter */,
+				040CBB6B28E65BB4003E4458 /* View */,
+			);
+			path = WebModule;
+			sourceTree = "<group>";
+		};
+		040CBB6B28E65BB4003E4458 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				040CBB6D28E65BCC003E4458 /* WebController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		040CBB6C28E65BB8003E4458 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				040CBB7128E65BE4003E4458 /* WebPresenterDelegate.swift */,
+				040CBB6F28E65BD6003E4458 /* WebPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		0456470528E5E9D1002459A5 = {
@@ -210,11 +243,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040CBB6E28E65BCC003E4458 /* WebController.swift in Sources */,
 				0456471628E5E9D1002459A5 /* CameraController.swift in Sources */,
+				040CBB7228E65BE4003E4458 /* WebPresenterDelegate.swift in Sources */,
 				040CBB6228E600BF003E4458 /* CameraPresenter.swift in Sources */,
 				0456471228E5E9D1002459A5 /* AppDelegate.swift in Sources */,
 				040CBB6428E6011A003E4458 /* CameraPresenterDelegate.swift in Sources */,
 				040CBB6728E6236F003E4458 /* CameraManager.swift in Sources */,
+				040CBB7028E65BD6003E4458 /* WebPresenter.swift in Sources */,
 				040CBB6028E60051003E4458 /* ModuleBuilder.swift in Sources */,
 				040CBB6928E62CCB003E4458 /* CameraManagerProtocol.swift in Sources */,
 			);
@@ -361,6 +397,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need to access the camera for scanning QR code.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
@@ -390,6 +427,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need to access the camera for scanning QR code.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
