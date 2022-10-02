@@ -18,4 +18,13 @@ struct ModuleBuilder {
         presenter.cameraManager = cameraManager
         return view
     }
+    
+    static func buildWebModule(with qrUrl: String) -> UIViewController {
+        let view = WebController(qrUrl: qrUrl)
+        let presenter = WebPresenter()
+        
+        view.presenter = presenter
+        presenter.delegate = view
+        return UINavigationController(rootViewController: view)
+    }
 }
