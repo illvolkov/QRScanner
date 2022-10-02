@@ -13,6 +13,8 @@ class WebPresenter {
     
     weak var delegate: WebPresenterDelegate?
     
+    //MARK: - Functions
+    
     func load(webView: WKWebView, with url: String) {
         guard let url = URL(string: url) else { return }
         let request = URLRequest(url: url)
@@ -46,6 +48,24 @@ class WebPresenter {
     func handleShareTap() {
         if let delegate {
             delegate.sharePage()
+        }
+    }
+    
+    func showLoadingErrorAlert(with error: Error) {
+        let alert = UIAlertController(title: Strings.loadingErrorAlertTitle, message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Strings.loadingErrorAlertButtonTitle, style: .cancel) { _ in
+            self.handleClose()
+        })
+        if let delegate {
+            delegate.presentError(alert: alert)
+        }
+    }
+    
+    func showResultOfSaveAlert(title: String) {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Strings.resultOfSaveAlertButtonTitle, style: .cancel))
+        if let delegate {
+            delegate.presentSaveResult(alert: alert)
         }
     }
 }

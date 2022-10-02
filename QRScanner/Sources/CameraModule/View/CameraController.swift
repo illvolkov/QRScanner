@@ -15,16 +15,16 @@ class CameraController: UIViewController {
     var presenter: CameraPresenter?
     
     //MARK: - Private properties
-        
+    
     private var isFlashOn: Bool = false {
         didSet {
             if isFlashOn {
-                setImageForFlashButton(with: "bolt.fill")
+                setImageForFlashButton(with: Images.flashOnButtonImage)
                 if let presenter {
                     presenter.handleFlashButtonEnabledState()
                 }
             } else {
-                setImageForFlashButton(with: "bolt.slash.fill")
+                setImageForFlashButton(with: Images.flashOffButtonImage)
                 if let presenter {
                     presenter.handleFlashButtonDisabledState()
                 }
@@ -37,8 +37,8 @@ class CameraController: UIViewController {
     private lazy var flashButton: UIButton = {
         let button = UIButton()
         button.tintColor = .white
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: view.frame.width * 0.07)
-        button.setImage(UIImage(systemName: "bolt.slash.fill")?.withConfiguration(imageConfiguration), for: .normal)
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: view.frame.width * Sizes.flashButtonMultipliedImageSize)
+        button.setImage(UIImage(systemName: Images.flashOffButtonImage)?.withConfiguration(imageConfiguration), for: .normal)
         button.addTarget(self, action: #selector(flashButtonDidTap), for: .touchUpInside)
         return button
     }()
@@ -46,7 +46,7 @@ class CameraController: UIViewController {
     private var qrFrameImage: UIImageView = {
         let qrFrame = UIImageView()
         let configuration = UIImage.SymbolConfiguration(weight: .ultraLight)
-        qrFrame.image = UIImage(systemName: "viewfinder")?.withConfiguration(configuration)
+        qrFrame.image = UIImage(systemName: Images.qrFrameImage)?.withConfiguration(configuration)
         qrFrame.tintColor = .white
         return qrFrame
     }()
@@ -74,20 +74,20 @@ class CameraController: UIViewController {
     
     private func setupLayout() {
         flashButton.translatesAutoresizingMaskIntoConstraints = false
-        flashButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        flashButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        flashButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Offsets.offset20).isActive = true
+        flashButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Offsets.offset20).isActive = true
         
         qrFrameImage.translatesAutoresizingMaskIntoConstraints = false
         qrFrameImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         qrFrameImage.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        qrFrameImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        qrFrameImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Sizes.qrFrameImageMultipliedWidthSize).isActive = true
         qrFrameImage.heightAnchor.constraint(equalTo: qrFrameImage.widthAnchor).isActive = true
     }
     
     //MARK: - Functions
     
     private func setImageForFlashButton(with name: String) {
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: view.frame.width * 0.07)
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: view.frame.width * Sizes.flashButtonMultipliedImageSize)
         flashButton.setImage(UIImage(systemName: name)?.withConfiguration(imageConfiguration), for: .normal)
     }
     
