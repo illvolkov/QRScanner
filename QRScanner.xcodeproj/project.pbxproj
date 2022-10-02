@@ -19,6 +19,7 @@
 		0456471628E5E9D1002459A5 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0456471528E5E9D1002459A5 /* CameraController.swift */; };
 		0456471B28E5E9D4002459A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0456471A28E5E9D4002459A5 /* Assets.xcassets */; };
 		0456471E28E5E9D4002459A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0456471C28E5E9D4002459A5 /* LaunchScreen.storyboard */; };
+		0495D22628E9C92A0057D924 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495D22528E9C9290057D924 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		0456471A28E5E9D4002459A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0456471D28E5E9D4002459A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0456471F28E5E9D4002459A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0495D22528E9C9290057D924 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				040CBB6528E62363003E4458 /* Managers */,
 				040CBB6A28E65BA4003E4458 /* WebModule */,
 				040CBB5A28E5FA9B003E4458 /* CameraModule */,
+				0495D22428E9C9070057D924 /* Constants */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -173,6 +176,14 @@
 			path = QRScanner;
 			sourceTree = "<group>";
 		};
+		0495D22428E9C9070057D924 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				0495D22528E9C9290057D924 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -244,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				040CBB6E28E65BCC003E4458 /* WebController.swift in Sources */,
+				0495D22628E9C92A0057D924 /* Constants.swift in Sources */,
 				0456471628E5E9D1002459A5 /* CameraController.swift in Sources */,
 				040CBB7228E65BE4003E4458 /* WebPresenterDelegate.swift in Sources */,
 				040CBB6228E600BF003E4458 /* CameraPresenter.swift in Sources */,

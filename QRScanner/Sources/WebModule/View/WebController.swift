@@ -26,7 +26,7 @@ class WebController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Strings.fatalErrorMessage)
     }
     
     //MARK: - Views
@@ -40,20 +40,20 @@ class WebController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: view.frame.width * 0.05, weight: .bold)
+        label.font = .systemFont(ofSize: view.frame.width * Sizes.titleLabelFontSize, weight: .bold)
         label.textAlignment = .center
         label.numberOfLines = 1
         label.frame = CGRect(x: 0,
                              y: 0,
-                             width: view.frame.width * 0.6,
-                             height: view.frame.width * 0.06)
+                             width: view.frame.width * Sizes.multipliedWidthHeight0_6,
+                             height: view.frame.width * Sizes.multipliedWidthHeight0_6)
         return label
     }()
     
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .system)
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: view.frame.width * 0.05)
-        button.setImage(UIImage(systemName: "xmark.circle")?.withConfiguration(imageConfiguration), for: .normal)
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: view.frame.width * Sizes.buttonImageMultipliedSize0_05)
+        button.setImage(UIImage(systemName: Images.closeButtonImage)?.withConfiguration(imageConfiguration), for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(closeButtonDidTap), for: .touchUpInside)
         return button
@@ -65,10 +65,10 @@ class WebController: UIViewController {
         return view
     }()
     
-    private lazy var forwardButton = createButtonForBottomPanel(with: "arrowshape.turn.up.right", action: #selector(forwardButtonDidTap))
-    private lazy var backwardButton = createButtonForBottomPanel(with: "arrowshape.turn.up.left", action: #selector(backwardButtonDidTap))
-    private lazy var reloadButton = createButtonForBottomPanel(with: "arrow.counterclockwise", action: #selector(reloadButtonDidTap))
-    private lazy var shareButton = createButtonForBottomPanel(with: "square.and.arrow.up", action: #selector(shareButtonDidTap))
+    private lazy var forwardButton = createButtonForBottomPanel(with: Images.forwardButtonImage, action: #selector(forwardButtonDidTap))
+    private lazy var backwardButton = createButtonForBottomPanel(with: Images.backwardButtonImage, action: #selector(backwardButtonDidTap))
+    private lazy var reloadButton = createButtonForBottomPanel(with: Images.reloadButtonImage, action: #selector(reloadButtonDidTap))
+    private lazy var shareButton = createButtonForBottomPanel(with: Images.shareButtonImage, action: #selector(shareButtonDidTap))
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
@@ -117,30 +117,30 @@ class WebController: UIViewController {
         webView.bottomAnchor.constraint(equalTo: webNavigationPanel.topAnchor).isActive = true
         
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.centerYAnchor.constraint(equalTo: webNavigationPanel.centerYAnchor, constant: -10).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: webNavigationPanel.centerYAnchor, constant: -Offsets.offset10).isActive = true
         activityIndicator.centerXAnchor.constraint(equalTo: webNavigationPanel.centerXAnchor).isActive = true
         
         webNavigationPanel.translatesAutoresizingMaskIntoConstraints = false
         webNavigationPanel.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         webNavigationPanel.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         webNavigationPanel.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        webNavigationPanel.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
+        webNavigationPanel.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: Sizes.webNavigationPanelMultipliedHeight).isActive = true
         
         backwardButton.translatesAutoresizingMaskIntoConstraints = false
-        backwardButton.centerYAnchor.constraint(equalTo: webNavigationPanel.centerYAnchor, constant: -10).isActive = true
-        backwardButton.leftAnchor.constraint(equalTo: webNavigationPanel.leftAnchor, constant: 15).isActive = true
+        backwardButton.centerYAnchor.constraint(equalTo: webNavigationPanel.centerYAnchor, constant: -Offsets.offset10).isActive = true
+        backwardButton.leftAnchor.constraint(equalTo: webNavigationPanel.leftAnchor, constant: Offsets.offset15).isActive = true
         
         forwardButton.translatesAutoresizingMaskIntoConstraints = false
-        forwardButton.centerYAnchor.constraint(equalTo: webNavigationPanel.centerYAnchor, constant: -10).isActive = true
-        forwardButton.leftAnchor.constraint(equalTo: backwardButton.rightAnchor, constant: 15).isActive = true
+        forwardButton.centerYAnchor.constraint(equalTo: webNavigationPanel.centerYAnchor, constant: -Offsets.offset10).isActive = true
+        forwardButton.leftAnchor.constraint(equalTo: backwardButton.rightAnchor, constant: Offsets.offset15).isActive = true
         
         shareButton.translatesAutoresizingMaskIntoConstraints = false
-        shareButton.centerYAnchor.constraint(equalTo: webNavigationPanel.centerYAnchor, constant: -10).isActive = true
-        shareButton.rightAnchor.constraint(equalTo: webNavigationPanel.rightAnchor, constant: -15).isActive = true
+        shareButton.centerYAnchor.constraint(equalTo: webNavigationPanel.centerYAnchor, constant: -Offsets.offset10).isActive = true
+        shareButton.rightAnchor.constraint(equalTo: webNavigationPanel.rightAnchor, constant: -Offsets.offset15).isActive = true
         
         reloadButton.translatesAutoresizingMaskIntoConstraints = false
-        reloadButton.centerYAnchor.constraint(equalTo: webNavigationPanel.centerYAnchor, constant: -10).isActive = true
-        reloadButton.rightAnchor.constraint(equalTo: shareButton.leftAnchor, constant: -25).isActive = true
+        reloadButton.centerYAnchor.constraint(equalTo: webNavigationPanel.centerYAnchor, constant: -Offsets.offset10).isActive = true
+        reloadButton.rightAnchor.constraint(equalTo: shareButton.leftAnchor, constant: -Offsets.reloadButtonLeftOffset25).isActive = true
     }
     
     private func setupNavigationBar() {
@@ -156,9 +156,9 @@ class WebController: UIViewController {
     
     // webview title is taken and set to the title label
     private func setTitle() {
-        webView.evaluateJavaScript("document.title") { result, error in
+        webView.evaluateJavaScript(Strings.webSiteTitle) { result, error in
             if error != nil {
-                self.titleLabel.text = "Untitled"
+                self.titleLabel.text = Strings.untitledTitlelabel
                 return
             }
             
@@ -170,7 +170,7 @@ class WebController: UIViewController {
     
     private func createButtonForBottomPanel(with image: String, action: Selector) -> UIButton {
         let button = UIButton(type: .system)
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: view.frame.width * 0.05)
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: view.frame.width * Sizes.buttonImageMultipliedSize0_05)
         button.setImage(UIImage(systemName: image)?.withConfiguration(imageConfiguration), for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: action, for: .touchUpInside)
@@ -187,7 +187,7 @@ class WebController: UIViewController {
     // checking if the url is the path to the pdf file so that it can be saved
     private func checkActivityItemTypePdf(with url: URL) -> [Any] {
         var activityItems = [Any]()
-        if url.lastPathComponent.contains(".pdf") {
+        if url.lastPathComponent.contains(Strings.pdfExtension) {
             if let data = try? Data(contentsOf: url) {
                 activityItems.append(data)
             }
@@ -266,10 +266,10 @@ extension WebController: WebPresenterDelegate {
                     return
                 }
                 
-                if activity.rawValue == "com.apple.DocumentManagerUICore.SaveToFiles" && completed {
-                    presenter.showResultAlert(title: "File saved")
+                if activity.rawValue == Strings.saveToFileActivityType && completed {
+                    presenter.showResultOfSaveAlert(title: Strings.successResultOfSaveAlertTitle)
                 } else {
-                    presenter.showResultAlert(title: "Saiving failed")
+                    presenter.showResultOfSaveAlert(title: Strings.failedResultOfSaveAlertTitle)
                 }
             }
         }

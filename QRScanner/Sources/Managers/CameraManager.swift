@@ -42,7 +42,7 @@ class CameraManager: CameraManagerProtocol {
         view.layer.addSublayer(videoPreviewLayer)
         videoPreviewLayer.frame = view.bounds
         
-        let captureSessionQueue = DispatchQueue(label: "captureSessionQueue")
+        let captureSessionQueue = DispatchQueue(label: Strings.captureSessionQueueLabel)
         
         captureSessionQueue.async {
             self.captureSession.startRunning()

@@ -52,8 +52,8 @@ class WebPresenter {
     }
     
     func showLoadingErrorAlert(with error: Error) {
-        let alert = UIAlertController(title: "Loading failed", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        let alert = UIAlertController(title: Strings.loadingErrorAlertTitle, message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Strings.loadingErrorAlertButtonTitle, style: .cancel) { _ in
             self.handleClose()
         })
         if let delegate {
@@ -61,9 +61,9 @@ class WebPresenter {
         }
     }
     
-    func showResultAlert(title: String) {
+    func showResultOfSaveAlert(title: String) {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        alert.addAction(UIAlertAction(title: Strings.resultOfSaveAlertButtonTitle, style: .cancel))
         if let delegate {
             delegate.presentSaveResult(alert: alert)
         }
