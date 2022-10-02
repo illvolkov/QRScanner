@@ -34,20 +34,19 @@ class WebController: UIViewController {
     private lazy var webView: WKWebView = {
         let webView = WKWebView()
         webView.navigationDelegate = self
-        webView.allowsBackForwardNavigationGestures = true
-        
         return webView
     }()
-        
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: view.frame.width * 0.05, weight: .bold)
+        label.textAlignment = .center
         label.numberOfLines = 1
         label.frame = CGRect(x: 0,
                              y: 0,
                              width: view.frame.width * 0.6,
-                             height: view.frame.width * 0.05)
+                             height: view.frame.width * 0.06)
         return label
     }()
     
@@ -95,11 +94,6 @@ class WebController: UIViewController {
         super.viewWillAppear(animated)
         
         setupNavigationBar()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
         activityIndicator.startAnimating()
     }
     
@@ -117,7 +111,7 @@ class WebController: UIViewController {
     
     private func setupLayout() {
         webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         webView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         webView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         webView.bottomAnchor.constraint(equalTo: webNavigationPanel.topAnchor).isActive = true
@@ -160,14 +154,14 @@ class WebController: UIViewController {
     
     //MARK: - Functions
     
+    // webview title is taken and set to the title label
     private func setTitle() {
         webView.evaluateJavaScript("document.title") { result, error in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
+            if error != nil {
                 self.titleLabel.text = "Untitled"
                 return
             }
-
+            
             if let result = result as? String {
                 self.titleLabel.text = result
             }
@@ -181,6 +175,26 @@ class WebController: UIViewController {
         button.tintColor = .white
         button.addTarget(self, action: action, for: .touchUpInside)
         return button
+    }
+    
+    private func updateInteractionUI() {
+        activityIndicator.stopAnimating()
+        setTitle()
+        forwardButton.isEnabled = webView.canGoForward
+        backwardButton.isEnabled = webView.canGoBack
+    }
+    
+    // checking if the url is the path to the pdf file so that it can be saved
+    private func checkActivityItemTypePdf(with url: URL) -> [Any] {
+        var activityItems = [Any]()
+        if url.lastPathComponent.contains(".pdf") {
+            if let data = try? Data(contentsOf: url) {
+                activityItems.append(data)
+            }
+        } else {
+            activityItems.append(url)
+        }
+        return activityItems
     }
     
     //MARK: - Actions
@@ -219,6 +233,7 @@ class WebController: UIViewController {
 //MARK: - WebPresenterDelegate methods
 
 extension WebController: WebPresenterDelegate {
+    
     func moveForwardPage() {
         if webView.canGoForward {
             webView.goForward()
@@ -235,14 +250,47 @@ extension WebController: WebPresenterDelegate {
         webView.reload()
     }
     
+    // opening UIActivityViewController
     func sharePage() {
-        print("share")
+
+        guard let url = URL(string: qrUrl) else { return }
+        
+        let shareController = UIActivityViewController(activityItems: checkActivityItemTypePdf(with: url), applicationActivities: nil)
+        
+        shareController.completionWithItemsHandler = { activity, completed, _, _ in
+            if let activity {
+                
+                guard let presenter = self.presenter else { return }
+                
+                if !completed {
+                    return
+                }
+                
+                if activity.rawValue == "com.apple.DocumentManagerUICore.SaveToFiles" && completed {
+                    presenter.showResultAlert(title: "File saved")
+                } else {
+                    presenter.showResultAlert(title: "Saiving failed")
+                }
+            }
+        }
+        shareController.popoverPresentationController?.sourceView = self.view
+        self.present(shareController, animated: true)
+    }
+    
+    func presentError(alert: UIAlertController) {
+        present(alert, animated: true)
+    }
+    
+    func presentSaveResult(alert: UIAlertController) {
+        present(alert, animated: true)
     }
     
     func dismission() {
         dismiss(animated: true)
     }
 }
+
+//MARK: - WKNavigationDelegate methods
 
 extension WebController: WKNavigationDelegate {
     
@@ -251,19 +299,14 @@ extension WebController: WKNavigationDelegate {
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        activityIndicator.stopAnimating()
-        setTitle()
-        forwardButton.isEnabled = webView.canGoForward
-        backwardButton.isEnabled = webView.canGoBack
+        updateInteractionUI()
     }
     
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         activityIndicator.stopAnimating()
         
-        let alert = UIAlertController(title: "Loading error", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.presenter?.handleClose()
-        })
-        present(alert, animated: true)
+        if let presenter {
+            presenter.showLoadingErrorAlert(with: error)
+        }
     }
 }

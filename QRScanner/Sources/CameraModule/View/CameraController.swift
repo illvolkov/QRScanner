@@ -15,7 +15,7 @@ class CameraController: UIViewController {
     var presenter: CameraPresenter?
     
     //MARK: - Private properties
-        
+    
     private var isFlashOn: Bool = false {
         didSet {
             if isFlashOn {

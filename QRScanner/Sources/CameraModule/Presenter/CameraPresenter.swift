@@ -37,7 +37,7 @@ class CameraPresenter {
     func showWebController(with qrUrl: String) {
         let webController = ModuleBuilder.buildWebModule(with: qrUrl)
         if let delegate {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                 delegate.presenting(webController: webController)
             }
         }
