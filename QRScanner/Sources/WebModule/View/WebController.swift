@@ -43,8 +43,7 @@ class WebController: UIViewController {
         label.font = .systemFont(ofSize: view.frame.width * Sizes.titleLabelFontSize, weight: .bold)
         label.textAlignment = .center
         label.numberOfLines = 1
-        label.frame = CGRect(x: 0,
-                             y: 0,
+        label.frame = CGRect(x: 0, y: 0,
                              width: view.frame.width * Sizes.multipliedWidthHeight0_6,
                              height: view.frame.width * Sizes.multipliedWidthHeight0_6)
         return label
@@ -81,10 +80,8 @@ class WebController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let presenter {
-            presenter.delegate = self
-            presenter.load(webView: webView, with: qrUrl)
-        }
+        presenter?.delegate = self
+        presenter?.load(webView: webView, with: qrUrl)
         
         setupHierarchy()
         setupLayout()
@@ -157,14 +154,13 @@ class WebController: UIViewController {
     // webview title is taken and set to the title label
     private func setTitle() {
         webView.evaluateJavaScript(Strings.webSiteTitle) { result, error in
-            if error != nil {
+            guard error == nil, let webViewTitle = result as? String else {
                 self.titleLabel.text = Strings.untitledTitlelabel
+                print(error?.localizedDescription ?? "")
                 return
             }
             
-            if let result = result as? String {
-                self.titleLabel.text = result
-            }
+            self.titleLabel.text = webViewTitle
         }
     }
     
@@ -200,33 +196,23 @@ class WebController: UIViewController {
     //MARK: - Actions
     
     @objc private func closeButtonDidTap() {
-        if let presenter {
-            presenter.handleClose()
-        }
+        presenter?.handleClose()
     }
     
     @objc private func forwardButtonDidTap() {
-        if let presenter {
-            presenter.handleForwardTap()
-        }
+        presenter?.handleForwardTap()
     }
     
     @objc private func backwardButtonDidTap() {
-        if let presenter {
-            presenter.handleBackwardTap()
-        }
+        presenter?.handleBackwardTap()
     }
     
     @objc private func reloadButtonDidTap() {
-        if let presenter {
-            presenter.handleReloadTap()
-        }
+        presenter?.handleReloadTap()
     }
     
     @objc private func shareButtonDidTap() {
-        if let presenter {
-            presenter.handleShareTap()
-        }
+        presenter?.handleShareTap()
     }
 }
 
@@ -256,24 +242,16 @@ extension WebController: WebPresenterDelegate {
         guard let url = URL(string: qrUrl) else { return }
         
         let shareController = UIActivityViewController(activityItems: checkActivityItemTypePdf(with: url), applicationActivities: nil)
-        
+        shareController.popoverPresentationController?.sourceView = self.view
+
         shareController.completionWithItemsHandler = { activity, completed, _, _ in
-            if let activity {
-                
-                guard let presenter = self.presenter else { return }
-                
-                if !completed {
-                    return
-                }
-                
-                if activity.rawValue == Strings.saveToFileActivityType && completed {
-                    presenter.showResultOfSaveAlert(title: Strings.successResultOfSaveAlertTitle)
-                } else {
-                    presenter.showResultOfSaveAlert(title: Strings.failedResultOfSaveAlertTitle)
-                }
+            
+            if activity?.rawValue == Strings.saveToFileActivityType && completed {
+                self.presenter?.showResultOfSaveAlert(title: Strings.successResultOfSaveAlertTitle)
+            } else if activity?.rawValue == Strings.saveToFileActivityType && !completed {
+                self.presenter?.showResultOfSaveAlert(title: Strings.failedResultOfSaveAlertTitle)
             }
         }
-        shareController.popoverPresentationController?.sourceView = self.view
         self.present(shareController, animated: true)
     }
     
@@ -305,8 +283,6 @@ extension WebController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         activityIndicator.stopAnimating()
         
-        if let presenter {
-            presenter.showLoadingErrorAlert(with: error)
-        }
+        presenter?.showLoadingErrorAlert(with: error)
     }
 }

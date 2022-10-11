@@ -22,33 +22,23 @@ class WebPresenter {
     }
     
     func handleClose() {
-        if let delegate {
-            delegate.dismission()
-        }
+        delegate?.dismission()
     }
     
     func handleForwardTap() {
-        if let delegate {
-            delegate.moveForwardPage()
-        }
+        delegate?.moveForwardPage()
     }
     
     func handleBackwardTap() {
-        if let delegate {
-            delegate.moveBackwardPage()
-        }
+        delegate?.moveBackwardPage()
     }
     
     func handleReloadTap() {
-        if let delegate {
-            delegate.reloadPage()
-        }
+        delegate?.reloadPage()
     }
     
     func handleShareTap() {
-        if let delegate {
-            delegate.sharePage()
-        }
+        delegate?.sharePage()
     }
     
     func showLoadingErrorAlert(with error: Error) {
@@ -56,16 +46,12 @@ class WebPresenter {
         alert.addAction(UIAlertAction(title: Strings.loadingErrorAlertButtonTitle, style: .cancel) { _ in
             self.handleClose()
         })
-        if let delegate {
-            delegate.presentError(alert: alert)
-        }
+        delegate?.presentError(alert: alert)
     }
     
     func showResultOfSaveAlert(title: String) {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: Strings.resultOfSaveAlertButtonTitle, style: .cancel))
-        if let delegate {
-            delegate.presentSaveResult(alert: alert)
-        }
+        delegate?.presentSaveResult(alert: alert)
     }
 }
