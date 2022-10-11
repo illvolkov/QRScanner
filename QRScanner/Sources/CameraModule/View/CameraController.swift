@@ -18,17 +18,10 @@ class CameraController: UIViewController {
     
     private var isFlashOn: Bool = false {
         didSet {
-            if isFlashOn {
-                setImageForFlashButton(with: Images.flashOnButtonImage)
-                if let presenter {
-                    presenter.handleFlashButtonEnabledState()
-                }
-            } else {
-                setImageForFlashButton(with: Images.flashOffButtonImage)
-                if let presenter {
-                    presenter.handleFlashButtonDisabledState()
-                }
-            }
+            let image = isFlashOn ? Images.flashOnButtonImage : Images.flashOffButtonImage
+            setImageForFlashButton(with: image)
+            
+            isFlashOn ? presenter?.handleFlashButtonEnabledState() : presenter?.handleFlashButtonDisabledState()
         }
     }
     
@@ -56,10 +49,8 @@ class CameraController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let presenter {
-            presenter.delegate = self
-            presenter.configureCamera(on: view, delegate: self)
-        }
+        presenter?.delegate = self
+        presenter?.configureCamera(on: view, delegate: self)
         
         setupHierarchy()
         setupLayout()
@@ -91,12 +82,8 @@ class CameraController: UIViewController {
         flashButton.setImage(UIImage(systemName: name)?.withConfiguration(imageConfiguration), for: .normal)
     }
     
-    private func setSuccessfulQRFrameImageColor() {
-        qrFrameImage.tintColor = .green
-    }
-    
-    private func setDefaultQRFrameImageColor() {
-        qrFrameImage.tintColor = .white
+    private func setColorForQRFrameImage(with color: UIColor) {
+        qrFrameImage.tintColor = color
     }
     
     //MARK: - Actions
@@ -112,21 +99,20 @@ extension CameraController: CameraPresenterDelegate {
     func presenting(webController: UIViewController) {
         webController.modalPresentationStyle = .fullScreen
         present(webController, animated: true)
-        setDefaultQRFrameImageColor()
+        setColorForQRFrameImage(with: .white)
     }
 }
 
 //MARK: - AVCaptureMetadataOutputObjectsDelegate methods
 
 extension CameraController: AVCaptureMetadataOutputObjectsDelegate {
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        guard metadataObjects.count > 0 else { return }
+    func metadataOutput(_ output: AVCaptureMetadataOutput,
+                        didOutput metadataObjects: [AVMetadataObject],
+                        from connection: AVCaptureConnection) {
         
         if let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject, object.type == .qr {
-            setSuccessfulQRFrameImageColor()
-            if let presenter {
-                presenter.showWebController(with: object.stringValue ?? "")
-            }
+            setColorForQRFrameImage(with: .green)
+            presenter?.showWebController(with: object.stringValue ?? "")
         }
     }
 }

@@ -17,29 +17,21 @@ class CameraPresenter {
     //MARK: - Functions
     
     func configureCamera(on view: UIView, delegate: UIViewController) {
-        if let cameraManager {
-            cameraManager.setupVideoPreviewLayer(with: view, delegate: delegate)
-        }
+        cameraManager?.setupVideoPreviewLayer(with: view, delegate: delegate)
     }
     
     func handleFlashButtonEnabledState() {
-        if let cameraManager {
-            cameraManager.switchFlash(torchMode: .on)
-        }
+        cameraManager?.switchFlash(torchMode: .on)
     }
     
     func handleFlashButtonDisabledState() {
-        if let cameraManager {
-            cameraManager.switchFlash(torchMode: .off)
-        }
+        cameraManager?.switchFlash(torchMode: .off)
     }
     
     func showWebController(with qrUrl: String) {
         let webController = ModuleBuilder.buildWebModule(with: qrUrl)
-        if let delegate {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                delegate.presenting(webController: webController)
-            }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            self.delegate?.presenting(webController: webController)
         }
     }
 }
